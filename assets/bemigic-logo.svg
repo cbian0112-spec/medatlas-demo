@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 223" role="img" aria-labelledby="title desc">
+  <title id="title">米可 BeMigic</title>
+  <desc id="desc">戴圆眼镜、手持书本的米可卡通形象</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfbff"/>
+      <stop offset="1" stop-color="#f2efff"/>
+    </linearGradient>
+    <radialGradient id="fur" cx="44%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#fffdf6"/>
+      <stop offset=".72" stop-color="#eee4d1"/>
+      <stop offset="1" stop-color="#d9cbb5"/>
+    </radialGradient>
+    <linearGradient id="book" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7a06b"/>
+      <stop offset="1" stop-color="#775436"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff74ca"/>
+      <stop offset="1" stop-color="#ef168c"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#7e6f91" flood-opacity=".24"/>
+    </filter>
+  </defs>
+  <rect width="320" height="223" rx="18" fill="url(#bg)"/>
+  <ellipse cx="218" cy="203" rx="82" ry="10" fill="#c9c2da" opacity=".3"/>
+
+  <g transform="translate(13 62) rotate(-3)">
+    <text x="0" y="0" fill="#2027a8" font-family="KaiTi,STKaiti,cursive" font-size="26" font-weight="700">米可</text>
+    <text x="2" y="28" fill="#2027a8" font-family="Comic Sans MS,KaiTi,cursive" font-size="21" font-weight="700" font-style="italic">BeMigic</text>
+    <path d="M5 45c20 17 42 15 58-2 7-8 11-15 17-18" fill="none" stroke="#2630bd" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M80 20c-8-12-23-1-14 11l14 14 14-14c10-12-6-23-14-11z" fill="url(#heart)" filter="url(#shadow)"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <path d="M149 44c0-24 10-38 28-29l17 13c10-3 21-3 31 0l18-13c17-9 28 6 27 31l-3 44H151z" fill="url(#fur)"/>
+    <rect x="142" y="38" width="134" height="105" rx="48" fill="url(#fur)"/>
+    <path d="M158 36c3-13 8-18 18-13l12 9c-12 3-21 8-30 18z" fill="#eadcc7"/>
+    <path d="M260 36c-4-13-9-18-18-13l-12 9c12 3 21 8 30 18z" fill="#eadcc7"/>
+
+    <g fill="none" stroke="#735748" stroke-width="5">
+      <circle cx="179" cy="81" r="27"/>
+      <circle cx="238" cy="81" r="27"/>
+      <path d="M206 78c4-4 8-4 12 0M151 71l-16-7M266 71l15-8" stroke-linecap="round"/>
+    </g>
+    <ellipse cx="180" cy="82" rx="8" ry="12" fill="#6a3d23"/>
+    <ellipse cx="238" cy="82" rx="8" ry="12" fill="#6a3d23"/>
+    <ellipse cx="182" cy="79" rx="3" ry="5" fill="#080605"/>
+    <ellipse cx="240" cy="79" rx="3" ry="5" fill="#080605"/>
+    <circle cx="184" cy="76" r="2" fill="#fff"/>
+    <circle cx="242" cy="76" r="2" fill="#fff"/>
+    <path d="M205 101c3 5 7 5 10 0M210 96v5" fill="none" stroke="#6e4735" stroke-width="2.4" stroke-linecap="round"/>
+    <ellipse cx="158" cy="105" rx="13" ry="7" fill="#efad9c" opacity=".42"/>
+    <ellipse cx="260" cy="105" rx="13" ry="7" fill="#efad9c" opacity=".42"/>
+
+    <path d="M168 129c10-9 21-13 40-13s32 4 43 13l11 67H157z" fill="#f8f6ef"/>
+    <path d="M191 118l17 18 17-18 10 7-12 26h-30l-12-26z" fill="#fff" stroke="#ded7ca" stroke-width="1.5"/>
+    <path d="M208 136l-7 10 7 23 7-23z" fill="#80563e"/>
+
+    <ellipse cx="150" cy="159" rx="24" ry="22" fill="url(#fur)" transform="rotate(-22 150 159)"/>
+    <ellipse cx="268" cy="153" rx="23" ry="21" fill="url(#fur)" transform="rotate(20 268 153)"/>
+    <path d="M143 157l29 18M267 153l-28 21" fill="none" stroke="#d4c5ad" stroke-width="4" stroke-linecap="round"/>
+
+    <path d="M158 151c17-8 34-4 51 7 15-10 31-14 49-7l-7 57c-17-4-29-1-42 7-15-8-28-11-45-7z" fill="url(#book)" stroke="#68482f" stroke-width="2"/>
+    <path d="M209 158v57" fill="none" stroke="#e7c99b" stroke-width="2"/>
+    <path d="M167 160c14-4 26-1 36 5M215 165c11-6 23-9 36-5" fill="none" stroke="#f2dbb5" stroke-width="1.5" opacity=".75"/>
+    <ellipse cx="176" cy="213" rx="25" ry="10" fill="#735347"/>
+    <ellipse cx="244" cy="213" rx="25" ry="10" fill="#735347"/>
+  </g>
+
+  <path d="M279 161l27-67" fill="none" stroke="#7b4b32" stroke-width="4" stroke-linecap="round"/>
+  <path d="M306 94l5-10" fill="none" stroke="#b77951" stroke-width="5" stroke-linecap="round"/>
+</svg>
