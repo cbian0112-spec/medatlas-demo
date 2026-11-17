@@ -1,0 +1,12 @@
+# Local deployment tools and temporary files
+.tools/
+check_tools.py
+install_gh_portable.py
+*-status.txt
+*-validation.txt
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
