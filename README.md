@@ -2,7 +2,14 @@
 
 面向 Medical Information 团队的产品医学资料网站前端原型。
 
-## 查看方式
+## 在线预览
+
+- 网站：https://cbian0112-spec.github.io/medatlas-demo/
+- 源码：https://github.com/cbian0112-spec/medatlas-demo
+
+当前仓库及 GitHub Pages 均为公开状态，请勿上传真实、敏感或仅限内部使用的医学资料。
+
+## 本地查看
 
 直接双击 `index.html`，使用 Microsoft Edge 或 Chrome 打开即可，无需安装依赖。
 
@@ -34,14 +41,14 @@ python -m http.server 8080
 - 顶部菜单直接列出全部九个产品
 - 点击产品名称进入对应产品页
 - 全站医学资料搜索，快捷键为 `Ctrl + K`
-- 不再使用向下滚动的长页产品列表
+- 不使用向下滚动的长页产品列表
 
 ### 产品页面
 
 每个产品均有独立 URL，例如：
 
 ```text
-index.html#product/baiyueze
+https://cbian0112-spec.github.io/medatlas-demo/#product/baiyueze
 ```
 
 产品页面默认显示：
