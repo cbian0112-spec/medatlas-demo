@@ -1,5 +1,6 @@
 # Local deployment tools and temporary files
 .tools/
+supabase/.temp/
 check_tools.py
 install_gh_portable.py
 *-status.txt

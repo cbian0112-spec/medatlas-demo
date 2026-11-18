@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MedAtlas 内容管理后台">
+  <title>MedAtlas · 内容管理后台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <main id="bootScreen" class="boot-screen" aria-live="polite">
+    <div class="boot-mark"><i></i><i></i><i></i></div>
+    <p>正在连接 MedAtlas…</p>
+  </main>
+
+  <main id="loginScreen" class="auth-layout" hidden>
+    <section class="auth-visual">
+      <div class="auth-grid" aria-hidden="true"></div>
+      <div class="auth-brand">
+        <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div><strong>MedAtlas</strong><small>MEDICAL INFORMATION</small></div>
+      </div>
+      <div class="auth-copy">
+        <span>CONTENT OPERATIONS</span>
+        <h1>让医学内容的每一次更新<br>清晰、可审、可追溯。</h1>
+        <p>产品医学资料中心管理后台</p>
+      </div>
+      <div class="auth-signal" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p class="auth-foot">仅限已授权的内部成员使用</p>
+    </section>
+    <section class="auth-panel">
+      <form id="loginForm" class="login-card" novalidate>
+        <span class="eyebrow">SECURE ACCESS</span>
+        <h2>登录管理后台</h2>
+        <p>使用您的工作邮箱和密码继续。</p>
+        <label class="field">
+          <span>邮箱地址</span>
+          <input id="loginEmail" name="email" type="email" autocomplete="username" maxlength="254" placeholder="name@company.com" required>
+          <small class="field-error" data-error-for="email"></small>
+        </label>
+        <label class="field">
+          <span>密码</span>
+          <div class="password-field"><input id="loginPassword" name="password" type="password" autocomplete="current-password" minlength="6" placeholder="输入密码" required><button id="togglePassword" type="button" aria-label="显示密码">显示</button></div>
+          <small class="field-error" data-error-for="password"></small>
+        </label>
+        <button id="loginButton" class="primary-button auth-submit" type="submit"><span>登录</span></button>
+        <div id="loginMessage" class="login-message" role="alert" hidden></div>
+      </form>
+    </section>
+  </main>
+
+  <div id="adminApp" class="admin-app" hidden>
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-symbol compact" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div><strong>MedAtlas</strong><small>ADMIN CONSOLE</small></div>
+      </div>
+      <nav class="main-nav" aria-label="后台导航">
+        <button class="active" type="button" data-view="dashboard"><span>⌂</span><b>工作台</b></button>
+        <button type="button" data-view="products"><span>◫</span><b>产品管理</b></button>
+        <button type="button" data-view="research"><span>◉</span><b>研究进展</b></button>
+        <button type="button" data-view="resources"><span>▤</span><b>资源管理</b></button>
+        <button id="teamNav" type="button" data-view="team" hidden><span>◎</span><b>团队成员</b></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="system-status"><i></i><span><b>数据库已连接</b><small>SUPABASE · LIVE</small></span></div>
+        <a href="../index.html"><span>↗</span>查看前台站点</a>
+      </div>
+    </aside>
+
+    <div class="app-frame">
+      <header class="topbar">
+        <button id="menuToggle" class="icon-button menu-toggle" type="button" aria-label="打开导航">☰</button>
+        <div><span id="pageEyebrow">OVERVIEW</span><h1 id="pageTitle">工作台</h1></div>
+        <div class="topbar-actions">
+          <button id="refreshButton" class="icon-button" type="button" aria-label="刷新当前页面" title="刷新">↻</button>
+          <div class="user-summary"><span id="userInitials">MA</span><div><strong id="userName">MedAtlas 用户</strong><small id="userRole">内容成员</small></div></div>
+          <button id="logoutButton" class="text-button" type="button">退出</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section id="dashboardView" class="view-panel" data-panel="dashboard">
+          <div class="welcome-row">
+            <div><span class="eyebrow">MEDICAL CONTENT OPERATIONS</span><h2><span id="greeting">上午好</span>，<span id="welcomeUser">内容成员</span></h2><p>这里是当前医学内容资产与审核状态概览。</p></div>
+            <time id="currentDate"></time>
+          </div>
+          <div id="statGrid" class="stat-grid" aria-live="polite"></div>
+          <div class="dashboard-grid">
+            <article class="panel-card">
+              <div class="card-heading"><div><span class="eyebrow">WORKFLOW</span><h3>内容流程</h3></div></div>
+              <div id="workflowChart" class="workflow-chart"></div>
+            </article>
+            <article class="panel-card">
+              <div class="card-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h3>最近更新</h3></div></div>
+              <div id="recentList" class="recent-list"></div>
+            </article>
+          </div>
+          <article class="panel-card dashboard-products">
+            <div class="card-heading"><div><span class="eyebrow">PRODUCT HUBS</span><h3>产品专区</h3></div><button class="link-button" type="button" data-go-view="products">管理产品 →</button></div>
+            <div id="dashboardProducts" class="product-snapshot"></div>
+          </article>
+        </section>
+
+        <section id="productsView" class="view-panel" data-panel="products" hidden>
+          <div class="section-heading"><div><span class="eyebrow">PRODUCT PORTFOLIO</span><h2>产品管理</h2><p>维护产品专区基础信息、启用状态和前台显示顺序。</p></div><button id="addProductButton" class="primary-button" type="button">＋ 新建产品</button></div>
+          <div class="toolbar"><label class="search-box"><span>⌕</span><input id="productSearch" type="search" placeholder="搜索产品名称、编码或标识…"></label><select id="productActiveFilter" aria-label="筛选产品状态"><option value="all">全部状态</option><option value="active">已启用</option><option value="inactive">已停用</option></select></div>
+          <div class="table-card"><div class="table-wrap"><table><thead><tr><th>顺序</th><th>产品</th><th>标识</th><th>状态</th><th>最近更新</th><th class="actions-cell">操作</th></tr></thead><tbody id="productsBody"></tbody></table></div><div id="productsEmpty" class="empty-state" hidden></div></div>
+        </section>
+
+        <section id="researchView" class="view-panel" data-panel="research" hidden>
+          <div class="section-heading"><div><span class="eyebrow">RESEARCH UPDATES</span><h2>研究进展</h2><p>创建、审核并发布产品相关的医学研究动态。</p></div><button id="addResearchButton" class="primary-button" type="button">＋ 新建进展</button></div>
+          <div class="toolbar"><label class="search-box"><span>⌕</span><input id="researchSearch" type="search" placeholder="搜索标题、摘要或来源…"></label><select id="researchProductFilter" aria-label="按产品筛选"><option value="all">全部产品</option></select><select id="researchStatusFilter" aria-label="按状态筛选"><option value="all">全部状态</option><option value="draft">草稿</option><option value="review">审核中</option><option value="published">已发布</option><option value="archived">已归档</option></select></div>
+          <div class="table-card"><div class="table-wrap"><table><thead><tr><th>研究进展</th><th>产品 / 分类</th><th>状态</th><th>事件日期</th><th>重点</th><th class="actions-cell">操作</th></tr></thead><tbody id="researchBody"></tbody></table></div><div id="researchEmpty" class="empty-state" hidden></div></div>
+        </section>
+
+        <section id="resourcesView" class="view-panel" data-panel="resources" hidden>
+          <div class="section-heading"><div><span class="eyebrow">RESOURCE LIBRARY</span><h2>资源管理</h2><p>管理外部医学资料、附件和发布状态。</p></div><div class="heading-actions"><button id="uploadDocumentButton" class="secondary-button" type="button">⇧ 上传文件</button><button id="addResourceButton" class="primary-button" type="button">＋ 新建资源</button></div></div>
+          <div class="toolbar"><label class="search-box"><span>⌕</span><input id="resourceSearch" type="search" placeholder="搜索标题、摘要或来源…"></label><select id="resourceProductFilter" aria-label="按产品筛选"><option value="all">全部产品</option></select><select id="resourceStatusFilter" aria-label="按状态筛选"><option value="all">全部状态</option><option value="draft">草稿</option><option value="review">审核中</option><option value="published">已发布</option><option value="archived">已归档</option></select></div>
+          <div class="table-card"><div class="table-wrap"><table><thead><tr><th>资源</th><th>产品 / 类型</th><th>状态</th><th>年份 / 顺序</th><th>链接</th><th class="actions-cell">操作</th></tr></thead><tbody id="resourcesBody"></tbody></table></div><div id="resourcesEmpty" class="empty-state" hidden></div></div>
+          <div class="subsection-heading"><div><span class="eyebrow">DOCUMENTS</span><h3>文件资料</h3></div><span id="documentCount">0 个文件</span></div>
+          <div class="table-card"><div class="table-wrap"><table><thead><tr><th>文件</th><th>关联内容</th><th>版本</th><th>大小</th><th>上传时间</th><th class="actions-cell">操作</th></tr></thead><tbody id="documentsBody"></tbody></table></div><div id="documentsEmpty" class="empty-state" hidden></div></div>
+        </section>
+
+        <section id="teamView" class="view-panel" data-panel="team" hidden>
+          <div class="section-heading"><div><span class="eyebrow">ACCESS CONTROL</span><h2>团队成员</h2><p>查看成员状态，并通过安全的 Edge Function 邀请新成员。</p></div><button id="inviteMemberButton" class="primary-button" type="button">＋ 邀请成员</button></div>
+          <div class="role-guide"><div><b>管理员</b><span>完整管理及成员邀请权限</span></div><div><b>编辑</b><span>创建和编辑内容，不可发布</span></div><div><b>审核者</b><span>审核并发布医学内容</span></div></div>
+          <div class="table-card"><div class="table-wrap"><table><thead><tr><th>成员</th><th>角色</th><th>状态</th><th>加入时间</th><th>最近更新</th></tr></thead><tbody id="profilesBody"></tbody></table></div><div id="profilesEmpty" class="empty-state" hidden></div></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+  <div id="loadingOverlay" class="loading-overlay" hidden aria-live="polite"><div class="spinner"></div><p id="loadingText">正在加载…</p></div>
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <div id="formModal" class="modal-layer" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="formModalTitle">
+      <header><div><span id="formModalEyebrow" class="eyebrow">EDIT CONTENT</span><h2 id="formModalTitle">编辑内容</h2></div><button class="modal-close" type="button" data-close-modal="formModal" aria-label="关闭">×</button></header>
+      <form id="entityForm" novalidate><div id="formFields" class="form-grid"></div><div id="formError" class="form-message" role="alert" hidden></div><footer><button class="secondary-button" type="button" data-close-modal="formModal">取消</button><button id="saveEntityButton" class="primary-button" type="submit">保存</button></footer></form>
+    </div>
+  </div>
+
+  <div id="uploadModal" class="modal-layer" hidden>
+    <div class="modal-card compact-modal" role="dialog" aria-modal="true" aria-labelledby="uploadModalTitle">
+      <header><div><span class="eyebrow">DOCUMENT STORAGE</span><h2 id="uploadModalTitle">上传文件资料</h2></div><button class="modal-close" type="button" data-close-modal="uploadModal" aria-label="关闭">×</button></header>
+      <form id="uploadForm" novalidate>
+        <div class="form-grid">
+          <label class="field full"><span>选择文件 *</span><input id="documentFile" name="file" type="file" accept=".pdf,.ppt,.pptx,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation" required><small>支持 PDF、PPT、PPTX、DOC、DOCX，最大 50MB</small></label>
+          <label class="field"><span>关联类型 *</span><select id="documentRelationType" name="relation_type" required><option value="resource">资源</option><option value="research">研究进展</option><option value="product">产品</option></select></label>
+          <label class="field"><span>关联内容 *</span><select id="documentRelationId" name="relation_id" required></select></label>
+          <label class="field full"><span>版本标签</span><input name="version_label" type="text" maxlength="50" placeholder="例如：V1.0 / 2025 更新版"></label>
+        </div>
+        <div id="uploadProgress" class="upload-progress" hidden><span></span><p>正在安全上传文件，请勿关闭窗口…</p></div>
+        <div id="uploadError" class="form-message" role="alert" hidden></div>
+        <footer><button class="secondary-button" type="button" data-close-modal="uploadModal">取消</button><button id="uploadSubmitButton" class="primary-button" type="submit">上传并保存</button></footer>
+      </form>
+    </div>
+  </div>
+
+  <div id="previewModal" class="modal-layer preview-layer" hidden>
+    <div class="preview-card" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+      <header><div><span class="eyebrow">DOCUMENT PREVIEW</span><h2 id="previewTitle">资料预览</h2></div><div><a id="previewOpenLink" class="secondary-button" href="#" target="_blank" rel="noopener noreferrer">在新窗口打开 ↗</a><button class="modal-close" type="button" data-close-modal="previewModal" aria-label="关闭">×</button></div></header>
+      <div id="previewNotice" class="preview-notice" hidden></div>
+      <iframe id="previewFrame" title="资料预览" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal-layer" hidden>
+    <div class="confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+      <div class="warning-mark">!</div><h2 id="confirmTitle">确认操作</h2><p id="confirmMessage"></p><div class="confirm-actions"><button id="confirmCancel" class="secondary-button" type="button">取消</button><button id="confirmAccept" class="danger-button" type="button">确认删除</button></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js"></script>
+  <script src="../supabase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

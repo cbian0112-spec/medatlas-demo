@@ -1,0 +1,20 @@
+# Local Supabase project identifier. Remote linking stores environment-specific
+# metadata outside this committed configuration.
+project_id = "medatlas"
+
+[auth]
+site_url = "https://cbian0112-spec.github.io/medatlas-demo/admin/"
+additional_redirect_urls = [
+  "https://cbian0112-spec.github.io/medatlas-demo/admin/**",
+  "http://127.0.0.1:8000/admin/**"
+]
+enable_signup = false
+
+[auth.email]
+enabled = true
+enable_confirmations = true
+
+[functions.invite-user]
+# Keep gateway JWT verification on; the function also calls auth.getUser and
+# checks the caller's active administrator profile.
+verify_jwt = true
